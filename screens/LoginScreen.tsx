@@ -1,8 +1,9 @@
 import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import { TextInput } from 'react-native-paper'
+import { StyleSheet, View } from 'react-native'
+import { IconButton, TextInput } from 'react-native-paper'
+import { LoginScreenNavigationProp, LoginScreenProps } from './types'
 
-export const LoginScreen = () => {
+export const LoginScreen = ({navigation}: LoginScreenProps) => {
 
     const [text, setText] = React.useState('')
 
@@ -14,6 +15,14 @@ export const LoginScreen = () => {
                 onChangeText={text => setText(text)}
                 mode='outlined'
                 secureTextEntry={true}
+                theme={{ colors: { primary: 'black',}}}
+            />
+            <IconButton
+                icon='login'
+                onPress={() => {
+                    navigation.navigate('ContactsScreen')
+                    
+                }}
             />
         </View>
     </View>
