@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { IconButton, TextInput } from 'react-native-paper'
-import { LoginScreenNavigationProp, LoginScreenProps } from './types'
+import { LoginScreenProps } from './types'
 
 export const LoginScreen = ({navigation}: LoginScreenProps) => {
 
@@ -16,6 +16,7 @@ export const LoginScreen = ({navigation}: LoginScreenProps) => {
                 mode='outlined'
                 secureTextEntry={true}
                 theme={{ colors: { primary: 'black',}}}
+                autoComplete={false}
             />
             <IconButton
                 icon='login'
