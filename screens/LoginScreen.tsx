@@ -1,17 +1,19 @@
-import { Text, TextInput, StyleSheet, View } from 'react-native'
+import React from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import { TextInput } from 'react-native-paper'
 
 export const LoginScreen = () => {
+
+    const [text, setText] = React.useState('')
 
     return <View style={styles.container}>
         <View style={styles.pin}>
             <TextInput 
-                style={{
-                    height: 40, 
-                    justifyContent: 'center',
-                    marginLeft: 20,
-                    borderBottomColor: 'gray',                    
-                }}
-                placeholder="  Enter pin" 
+                label="Enter pin" 
+                value={text}
+                onChangeText={text => setText(text)}
+                mode='outlined'
+                secureTextEntry={true}
             />
         </View>
     </View>
