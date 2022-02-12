@@ -1,3 +1,4 @@
+import { Link } from '@react-navigation/native'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { IconButton, TextInput } from 'react-native-paper'
@@ -8,23 +9,28 @@ export const LoginScreen = ({navigation}: LoginScreenProps) => {
     const [text, setText] = React.useState('')
 
     return <View style={styles.container}>
-        <View style={styles.pin}>
-            <TextInput 
-                label="Enter pin" 
-                value={text}
-                onChangeText={text => setText(text)}
-                mode='outlined'
-                secureTextEntry={true}
-                theme={{ colors: { primary: 'black',}}}
-                autoComplete={false}
-            />
-            <IconButton
-                icon='login'
-                onPress={() => {
-                    navigation.navigate('ContactsScreen')
-                    
-                }}
-            />
+        <View>
+            <View style={styles.pin}>
+                <TextInput 
+                    label="Enter pin" 
+                    value={text}
+                    onChangeText={text => setText(text)}
+                    mode='outlined'
+                    secureTextEntry={true}
+                    theme={{ colors: { primary: 'black',}}}
+                    autoComplete={false}
+                />
+                <IconButton
+                    icon='login'
+                    onPress={() => {
+                        navigation.navigate('ContactsScreen')
+                        
+                    }}
+                />
+            </View>
+            <View style={styles.register}>
+                <Link to={{ screen: 'RegistrationScreen' }} style={styles.link}>Register</Link>
+            </View>
         </View>
     </View>
 }
@@ -40,10 +46,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-      },
-    separator: {
-      marginVertical: 30,
-      height: 1,
-      width: '80%',
     },
-  });
+    register: {
+        top: 12,
+        left: 12,
+    },
+    link: {
+        color: 'blue',
+    },
+});
