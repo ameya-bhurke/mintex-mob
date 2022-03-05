@@ -1,21 +1,22 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen } from './screens/LoginScreen';
 import { RootStackParamList } from './screens/types';
 import { ContactsScreen } from './screens/ContactsScreen';
 import { RegistrationScreen } from './screens/RegistrationScreen';
+import { StyleSheet } from 'react-native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
     return (
-        <NavigationContainer>
+        <NavigationContainer theme={AppTheme}>
           <Stack.Navigator>
             <Stack.Screen
-              name='LoginScreen'
-              component={LoginScreen}
-              options={{headerShown: false}}
+                name='LoginScreen'
+                component={LoginScreen}
+                options={{headerShown: false}}
             />
             <Stack.Screen 
                 name='RegistrationScreen'
@@ -31,3 +32,12 @@ export default function App() {
         </NavigationContainer>
       );
 }
+
+const AppTheme = {
+    ...DefaultTheme,
+    colors: {
+        ...DefaultTheme.colors,
+        background: '#F3F3F3',
+        border: '#F3F3F3',
+    },
+  };

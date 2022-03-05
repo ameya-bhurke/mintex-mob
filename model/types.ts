@@ -1,8 +1,10 @@
+export type MessageDirection = 'in' | 'out'
+
 export interface Message {
     author: string
     content: string
     time: Date
-    direction: 'in' | 'out'    
+    direction: MessageDirection   
 }
 
 export interface Contact {
