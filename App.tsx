@@ -6,6 +6,7 @@ import { RootStackParamList } from './screens/types';
 import { ContactsScreen } from './screens/ContactsScreen';
 import { RegistrationScreen } from './screens/RegistrationScreen';
 import { StyleSheet } from 'react-native';
+import { MessagesScreen } from './screens/MessagesScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -28,6 +29,11 @@ export default function App() {
                 component={ContactsScreen}
                 options={{headerShown: false}}
             />
+            <Stack.Screen 
+                name='MessagesScreen'
+                component={MessagesScreen}
+                options={{headerShown: false}}
+            />            
           </Stack.Navigator>
         </NavigationContainer>
       );

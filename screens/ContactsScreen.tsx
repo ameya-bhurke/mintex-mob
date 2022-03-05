@@ -1,22 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Message } from '../components/Message'
 import { useStores } from '../stores/stores'
 import { ContactsScreenProps } from './types'
 
-export const ContactsScreen = (navigation: ContactsScreenProps) => {
+export const ContactsScreen = ({navigation}: ContactsScreenProps) => {
     const { contactStore, messageStore } = useStores()
 
+    const _onPressMessage = () => {
+        navigation.navigate('MessagesScreen')
+    }
     
     const messages  = contactStore.getAll().map(contact => {
         if(messageStore.getMessageListFor(contact).length == 0) return null
         else { 
             const msg = messageStore.getMessageListFor(contact)[0]
-            return <Message  
-            id={contact.name}
-            content={msg.content}
-            date={msg.time}
-            direction={msg.direction}
-        />}})
+            return <TouchableOpacity
+                onPress={_onPressMessage}
+            >
+                <Message  
+                    id={contact.name}
+                    content={msg.content}
+                    date={msg.time}
+                    direction={msg.direction}
+                />
+            </TouchableOpacity>}})
 
     return <View style={styles.container}>
         <View>
