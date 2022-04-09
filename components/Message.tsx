@@ -11,12 +11,9 @@ interface MessageProps {
 
 export const Message = ({id, content, date, direction}: MessageProps) => {
     const directedMessage = () => {
-        console.log(`Direction: ${direction}`)
         if (direction && direction === 'out') {
             return <Text style={styles.contentOut}>{content}</Text>
         }
-
-        console.log(`rendering in message`)
 
         return <Text style={styles.contentIn}>{content}</Text>
     }
