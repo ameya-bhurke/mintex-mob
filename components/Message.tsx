@@ -26,7 +26,7 @@ export const Message = ({id, content, date, direction}: MessageProps) => {
             <Text style={styles.id}>{id}</Text>
         </View>
         <View>
-            {directedMessage}
+            {directedMessage()}
         </View>
     </View>
 }
