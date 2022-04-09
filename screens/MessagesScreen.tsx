@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
+import { IconButton } from 'react-native-paper'
 import { Message } from '../components/Message'
 import { useStores } from '../stores/stores'
 import { MessagesScreenProps } from './types'
@@ -17,6 +18,14 @@ export const MessagesScreen = ({route, navigation}: MessagesScreenProps) => {
         />)
 
     return <View style={styles.container}>
+        <View>
+            <IconButton
+                icon='arrow-left'
+                onPress={() => {
+                    navigation.navigate('ContactsScreen')
+                }}
+            />
+        </View>
         <View>
             {messages}
         </View>
