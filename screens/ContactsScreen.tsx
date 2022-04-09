@@ -1,13 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Message } from '../components/Message'
+import { Contact } from '../model/types'
 import { useStores } from '../stores/stores'
-import { ContactsScreenProps } from './types'
+import { backgroundColor, ContactsScreenProps } from './types'
 
 export const ContactsScreen = ({navigation}: ContactsScreenProps) => {
     const { contactStore, messageStore } = useStores()
 
-    const _onPressMessage = () => {
-        navigation.navigate('MessagesScreen')
+    const _onPressMessage = (contact: Contact) => {
+        navigation.navigate('MessagesScreen', {contact})
     }
     
     const messages  = contactStore.getAll().map(contact => {
@@ -15,13 +16,13 @@ export const ContactsScreen = ({navigation}: ContactsScreenProps) => {
         else { 
             const msg = messageStore.getMessageListFor(contact)[0]
             return <TouchableOpacity
-                onPress={_onPressMessage}
+                onPress={() => _onPressMessage(contact)}
             >
                 <Message  
                     id={contact.name}
                     content={msg.content}
                     date={msg.time}
-                    direction={msg.direction}
+                    direction={undefined}
                 />
             </TouchableOpacity>}})
 
@@ -31,8 +32,6 @@ export const ContactsScreen = ({navigation}: ContactsScreenProps) => {
         </View>
     </View>
 }
-
-const backgroundColor = 'white'
 
 const styles = StyleSheet.create({
     container: {

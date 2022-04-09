@@ -1,25 +1,35 @@
 import { StyleSheet, Text, View } from "react-native";
 import { MessageDirection } from "../model/types";
+import { backgroundColor } from "../screens/types";
 
 interface MessageProps {
     id: string
     content: string
     date: Date
-    direction: MessageDirection
+    direction: MessageDirection | undefined
 }
 
 export const Message = ({id, content, date, direction}: MessageProps) => {
+    const directedMessage = () => {
+        console.log(`Direction: ${direction}`)
+        if (direction && direction === 'out') {
+            return <Text style={styles.contentOut}>{content}</Text>
+        }
+
+        console.log(`rendering in message`)
+
+        return <Text style={styles.contentIn}>{content}</Text>
+    }
+
     return <View style={styles.container}>
         <View>
             <Text style={styles.id}>{id}</Text>
         </View>
         <View>
-            <Text style={styles.content}>{content}</Text>
+            {directedMessage}
         </View>
     </View>
 }
-
-const backgroundColor = 'white'
 
 const styles = StyleSheet.create({
     container: {
@@ -42,9 +52,14 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
-    content: {
+    contentIn: {
         flex: 1,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },
+    contentOut: {
+        flex: 1,
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+    },    
 });

@@ -3,20 +3,18 @@ import { Message } from '../components/Message'
 import { useStores } from '../stores/stores'
 import { MessagesScreenProps } from './types'
 
-export const MessagesScreen = (navigation: MessagesScreenProps) => {
-    const { contactStore, messageStore } = useStores()
+export const MessagesScreen = ({route, navigation}: MessagesScreenProps) => {
+    const { messageStore } = useStores()
 
-    
-    const messages  = contactStore.getAll().map(contact => {
-        if(messageStore.getMessageListFor(contact).length == 0) return null
-        else { 
-            const msg = messageStore.getMessageListFor(contact)[0]
-            return <Message  
-            id={contact.name}
+    const {contact} = route.params
+
+    const messages = messageStore.getMessageListFor(contact).
+        map(msg => <Message 
+            id={msg.author}
             content={msg.content}
             date={msg.time}
             direction={msg.direction}
-        />}})
+        />)
 
     return <View style={styles.container}>
         <View>
